@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// todo: call CreateFolderPath
+
 namespace Bugfree.Spo.Cqrs.Core.Commands
 {
     public class AddFileToLibrary : Command
