@@ -52,12 +52,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bugfree.Spo.Crqs.Core\Bugfree.Spo.Cqrs.Core.csproj">
-      <Project>{8de31dd4-d73d-491c-b198-d81035360de9}</Project>
-      <Name>Bugfree.Spo.Provisioning.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Commands\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
