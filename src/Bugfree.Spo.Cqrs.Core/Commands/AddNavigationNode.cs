@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace Bugfree.Spo.Cqrs.Core.GenericCommands
+namespace Bugfree.Spo.Cqrs.Core.Commands
 {
     public class AddNavigationNode : Command
     {

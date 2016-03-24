@@ -28,7 +28,8 @@ namespace Bugfree.Spo.Cqrs.Core.Commands
                 var properties = v3Prope.Element(v3 + "data").Element(v3 + "properties").Elements(v3 + "property");
                 title = properties.Single(e => e.Attribute("name").Value == "Title").Value;
             }
-            else {
+            else 
+            {
                 throw new ArgumentException("Unable to extract title for webpart definition");
             }
             Logger.Verbose($"Started executing {nameof(AddWebPartToWikiPage)} with title '{title}' to page '{filePath}'");
