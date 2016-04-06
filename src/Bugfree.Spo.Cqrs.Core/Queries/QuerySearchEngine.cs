@@ -22,7 +22,13 @@ namespace Bugfree.Spo.Cqrs.Core.Queries
                 {
                     QueryText = kql,
                     StartRow = startRow,
-                    RowLimit = BatchSize
+                    RowLimit = BatchSize,
+
+                    // beware that TrimDuplicates is true by default. And its behavior is somewhat counter-intuitive as it
+                    // removes search results which are similar to a certain degree. This implies search will treat some 
+                    // results as similar even though they're not, leaving out distinct results.
+                    // http://sharepoint.stackexchange.com/questions/14460/sharepoint-2010-search-when-is-a-document-a-duplicate
+                    TrimDuplicates = false
                 });
             ctx.ExecuteQuery();
 
