@@ -135,6 +135,7 @@
     <Compile Include="Extensions\TimeZoneExtensions.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\GetTenantSiteCollections.cs" />
     <Compile Include="Queries\QuerySearchEngine.cs" />
     <Compile Include="Queries\RecursiveNativeFolderVisitor.cs" />
     <Compile Include="Queries\RecursiveSharePointFolderVisitor.cs" />
