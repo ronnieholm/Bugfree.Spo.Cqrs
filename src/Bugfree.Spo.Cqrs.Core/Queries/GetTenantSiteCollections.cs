@@ -1,7 +1,6 @@
 ﻿using Bugfree.Spo.Cqrs.Core.Utilities;
 using Microsoft.Online.SharePoint.TenantAdministration;
 using Microsoft.SharePoint.Client;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,12 +24,8 @@ namespace Bugfree.Spo.Cqrs.Core.Queries
                 : GetTenantSiteCollectionsRecursive(tenant, newSiteProperties, tenantSiteCollections.NextStartIndex);
         }
 
-        public List<SiteProperties> Execute(ClientContext ctx) 
-        {
+        public List<SiteProperties> Execute(ClientContext tenantAdminCtx) {
             Logger.Verbose($"About to execute {nameof(GetTenantSiteCollections)}");
-            var url = ctx.Url;
-            var tenantAdminUrl = new AdminUrlInferrer().InferAdminFromTenant(new Uri(url.Replace(new Uri(url).AbsolutePath, "")));
-            var tenantAdminCtx = new ClientContext(tenantAdminUrl) { Credentials = ctx.Credentials };
             var tenant = new Tenant(tenantAdminCtx);
             tenantAdminCtx.Load(tenant);
             tenantAdminCtx.ExecuteQuery();
