@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Bugfree.Spo.Cqrs.Core
 {
@@ -22,26 +23,31 @@ namespace Bugfree.Spo.Cqrs.Core
             Error
         };
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public virtual void Verbose(string format, params object[] args)
         {
             WriteLine(format, LogLevel.Verbose, args);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public virtual void Warning(string format, params object[] args)
         {
             WriteLine(format, LogLevel.Warning, args);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public virtual void Error(string format, params object[] args)
         {
             WriteLine(format, LogLevel.Error, args);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void WriteLine(string format, LogLevel l, params object[] args)
         {
             Trace.WriteLine(Format(format, l, args));
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         protected string Format(string format, LogLevel l, params object[] args)
         {
             var frame = new StackFrame(3);
@@ -84,21 +90,25 @@ namespace Bugfree.Spo.Cqrs.Core
 
     public class ColoredConsoleLogger : TraceLogger
     {
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public override void Verbose(string format, params object[] args)
         {
             WriteLine(format, LogLevel.Verbose, Console.ForegroundColor, args);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public override void Warning(string format, params object[] args)
         {
             WriteLine(format, LogLevel.Warning, ConsoleColor.Yellow, args);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public override void Error(string format, params object[] args)
         {
             WriteLine(format, LogLevel.Error, ConsoleColor.Red);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void WriteLine(string s, LogLevel l, ConsoleColor foregroundColor, params object[] args)
         {
             var original = Console.ForegroundColor;
