@@ -26,19 +26,12 @@ namespace Bugfree.Spo.Cqrs.Core.Commands
         {
             Logger.Verbose($"Started executing {nameof(EnsureFeatureState)} for id '{featureId}' and scope '{scope}' on '{ctx.Url}'");
 
-            FeatureCollection features = null;
-            if (scope == FeatureDefinitionScope.Site)
-            {
-                features = ctx.Site.Features;
-            }
-            else if (scope == FeatureDefinitionScope.Web)
-            {
-                features = ctx.Web.Features;
-            }
-            else
-            {
-                throw new ArgumentException($"Unsupported scope: {scope}");
-            }
+            var features =
+                scope == FeatureDefinitionScope.Site
+                ? ctx.Site.Features
+                : scope == FeatureDefinitionScope.Web
+                    ? ctx.Web.Features
+                    : throw new ArgumentException($"Unsupported scope: {scope}");
 
             ctx.Load(features);
             ctx.ExecuteQuery();
