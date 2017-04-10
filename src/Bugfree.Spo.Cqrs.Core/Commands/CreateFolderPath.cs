@@ -1,6 +1,6 @@
-﻿using Microsoft.SharePoint.Client;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.SharePoint.Client;
 
 namespace Bugfree.Spo.Cqrs.Core.Commands
 {
@@ -22,18 +22,12 @@ namespace Bugfree.Spo.Cqrs.Core.Commands
                 f.Context.Load(nextFolder);
                 f.Context.ExecuteQuery();
             }
-            catch (ServerException e)
+            catch (ServerException e) when (e.ServerErrorTypeName == "System.IO.DirectoryNotFoundException")
             {
-                if (e.ServerErrorTypeName == "System.IO.DirectoryNotFoundException")
-                {
-                    nextFolder = f.Folders.Add(head);
-                    nextFolder.Update();
-                    f.Context.ExecuteQuery();
-                    Logger.Verbose($"Folder '{head}' created");
-                }
-                else {
-                    throw;
-                }
+                nextFolder = f.Folders.Add(head);
+                nextFolder.Update();
+                f.Context.ExecuteQuery();
+                Logger.Verbose($"Folder '{head}' created");
             }
 
             pathComponents.RemoveAt(0);
