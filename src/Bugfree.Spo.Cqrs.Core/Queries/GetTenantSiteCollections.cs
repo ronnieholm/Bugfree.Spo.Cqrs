@@ -1,8 +1,7 @@
-﻿using Bugfree.Spo.Cqrs.Core.Utilities;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Online.SharePoint.TenantAdministration;
 using Microsoft.SharePoint.Client;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Bugfree.Spo.Cqrs.Core.Queries 
 {

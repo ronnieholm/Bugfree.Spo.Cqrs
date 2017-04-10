@@ -1,8 +1,8 @@
-﻿using Bugfree.Spo.Cqrs.Core.Queries;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Bugfree.Spo.Cqrs.Core.Queries;
 using SPFile = Microsoft.SharePoint.Client.File;
 using SPFolder = Microsoft.SharePoint.Client.Folder;
 

@@ -1,8 +1,8 @@
-﻿using Microsoft.SharePoint.Client;
-using System;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Microsoft.SharePoint.Client.Search.Query;
-using System.Linq;
+using Microsoft.SharePoint.Client;
 
 namespace Bugfree.Spo.Cqrs.Core.Queries
 {

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bugfree Consulting")]
 [assembly: AssemblyProduct("Bugfree.Spo.Cqrs.Core.Tests")]
-[assembly: AssemblyCopyright("Copyright © Ronnie Holm 2014-2016")]
+[assembly: AssemblyCopyright("Copyright © Ronnie Holm 2014-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

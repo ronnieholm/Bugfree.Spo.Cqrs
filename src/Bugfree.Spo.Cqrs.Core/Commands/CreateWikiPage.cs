@@ -1,6 +1,6 @@
-﻿using Microsoft.SharePoint.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.SharePoint.Client;
 using T = Bugfree.Spo.Cqrs.Core.Commands.WikiPageTemplate;
 
 namespace Bugfree.Spo.Cqrs.Core.Commands

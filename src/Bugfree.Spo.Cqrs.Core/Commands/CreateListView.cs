@@ -1,6 +1,6 @@
-﻿using Microsoft.SharePoint.Client;
-using System;
+﻿using System;
 using System.Linq;
+using Microsoft.SharePoint.Client;
 
 namespace Bugfree.Spo.Cqrs.Core.Commands
 {
@@ -32,11 +32,7 @@ namespace Bugfree.Spo.Cqrs.Core.Commands
                 ViewFields = fields
             });
 
-            if (setAdditionalProperties != null)
-            {
-                setAdditionalProperties(newView);
-            }
-
+            setAdditionalProperties?.Invoke(newView);
             newView.Update();
             ctx.ExecuteQuery();
         }

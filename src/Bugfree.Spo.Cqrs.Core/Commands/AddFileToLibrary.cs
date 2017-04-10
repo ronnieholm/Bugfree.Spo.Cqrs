@@ -1,7 +1,7 @@
-﻿using Microsoft.SharePoint.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.SharePoint.Client;
 
 // todo: call CreateFolderPath
 
@@ -33,16 +33,9 @@ namespace Bugfree.Spo.Cqrs.Core.Commands
                 pathComponents.RemoveAt(0);
                 return GetFolderRecursive(nextFolder, pathComponents);
             }
-            catch (ServerException e)
+            catch (ServerException e) when (e.ServerErrorTypeName == "System.IO.DirectoryNotFoundException")
             {
-                if (e.ServerErrorTypeName == "System.IO.DirectoryNotFoundException")
-                {
-                    return null;
-                }
-                else
-                {
-                    throw;
-                }
+                return null;
             }
         }
 

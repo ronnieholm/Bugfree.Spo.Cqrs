@@ -11,7 +11,7 @@ namespace Bugfree.Spo.Cqrs.Core.Utilities
 
         public byte[] GetBinary(string id)
         {
-            using (var s = _current.GetManifestResourceStream("Bugfree.Spo.Cqrs.Core.Resources." + id))
+            using (var s = _current.GetManifestResourceStream($"Bugfree.Spo.Cqrs.Core.Resources.{id}"))
             {
                 var bytes = new byte[s.Length];
                 s.Read(bytes, 0, bytes.Length);
@@ -21,7 +21,7 @@ namespace Bugfree.Spo.Cqrs.Core.Utilities
 
         public string GetString(string id)
         {
-            using (var s = _current.GetManifestResourceStream("Bugfree.Spo.Cqrs.Core.Resources." + id))
+            using (var s = _current.GetManifestResourceStream($"Bugfree.Spo.Cqrs.Core.Resources.{id}"))
             using (var sr = new StreamReader(s))
             {
                 return sr.ReadToEnd();

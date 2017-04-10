@@ -1,8 +1,8 @@
-﻿using Bugfree.Spo.Cqrs.Core.Commands;
-using Microsoft.SharePoint.Client;
-using System;
+﻿using System;
 using System.Linq;
 using Xunit;
+using Microsoft.SharePoint.Client;
+using Bugfree.Spo.Cqrs.Core.Commands;
 
 namespace Bugfree.Spo.Cqrs.Core.Tests 
 {

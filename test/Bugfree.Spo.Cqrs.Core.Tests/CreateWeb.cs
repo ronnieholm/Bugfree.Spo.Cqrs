@@ -1,7 +1,7 @@
-﻿using Bugfree.Spo.Cqrs.Core.Commands;
-using System;
+﻿using System;
 using System.Linq;
 using Xunit;
+using Bugfree.Spo.Cqrs.Core.Commands;
 
 namespace Bugfree.Spo.Cqrs.Core.Tests {
     public class Create_web_command : EmptyWebBase
@@ -52,8 +52,7 @@ namespace Bugfree.Spo.Cqrs.Core.Tests {
         [Fact]
         void Apply_action_lambda() 
         {
-            // change description
-            
+            // change description            
         }
     }
 }

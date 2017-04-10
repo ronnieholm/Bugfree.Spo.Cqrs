@@ -1,5 +1,5 @@
-﻿using Microsoft.SharePoint.Client;
-using System.Linq;
+﻿using System.Linq;
+using Microsoft.SharePoint.Client;
 
 namespace Bugfree.Spo.Cqrs.Core.Commands
 {

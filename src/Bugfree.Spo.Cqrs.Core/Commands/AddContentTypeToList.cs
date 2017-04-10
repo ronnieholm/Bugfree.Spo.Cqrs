@@ -1,6 +1,6 @@
-﻿using Microsoft.SharePoint.Client;
-using System;
+﻿using System;
 using System.Linq;
+using Microsoft.SharePoint.Client;
 
 // todo: add setAdditionalProperties that passes along the content type passed to list if you with
 //       to override anything in that inherited one
