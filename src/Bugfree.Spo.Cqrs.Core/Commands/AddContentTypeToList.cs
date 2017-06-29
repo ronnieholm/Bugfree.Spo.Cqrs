@@ -2,9 +2,6 @@
 using System.Linq;
 using Microsoft.SharePoint.Client;
 
-// todo: add setAdditionalProperties that passes along the content type passed to list if you with
-//       to override anything in that inherited one
-
 namespace Bugfree.Spo.Cqrs.Core.Commands
 {
     public class AddContentTypeToList : Command
@@ -28,7 +25,6 @@ namespace Bugfree.Spo.Cqrs.Core.Commands
                 return;
             }
 
-            // todo: SingleOrDefault?
             var contentTypeToAdd = availableContentTypes.FirstOrDefault(ct => ct.Name == contentTypeName);
             if (contentTypeToAdd == null)
             {

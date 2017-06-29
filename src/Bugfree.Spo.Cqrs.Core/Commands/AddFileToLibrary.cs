@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.SharePoint.Client;
 
-// todo: call CreateFolderPath
-
 namespace Bugfree.Spo.Cqrs.Core.Commands
 {
     public class AddFileToLibrary : Command

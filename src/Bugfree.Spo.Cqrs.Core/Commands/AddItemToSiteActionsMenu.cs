@@ -12,7 +12,6 @@ namespace Bugfree.Spo.Cqrs.Core.Commands
         {
             Logger.Verbose($"Started executing {nameof(AddItemToSiteActionsMenu)} for item '{title}'");
 
-            // inspired by https://github.com/OfficeDev/PnP/tree/master/Scenarios/Provisioning.SiteModifier
             var web = ctx.Web;
             ctx.Load(web, w => w.UserCustomActions);
             ctx.ExecuteQuery();
