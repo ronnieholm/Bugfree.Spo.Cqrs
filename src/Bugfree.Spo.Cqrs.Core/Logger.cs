@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using static System.Console;
 
 namespace Bugfree.Spo.Cqrs.Core
 {
@@ -23,38 +24,17 @@ namespace Bugfree.Spo.Cqrs.Core
             Error
         };
 
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public virtual void Verbose(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Verbose, args);
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public virtual void Warning(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Warning, args);
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public virtual void Error(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Error, args);
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        private void WriteLine(string format, LogLevel l, params object[] args)
-        {
-            Trace.WriteLine(Format(format, l, args));
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        protected string Format(string format, LogLevel l, params object[] args)
+        [MethodImpl(MethodImplOptions.NoInlining)] public virtual void Verbose(string format, params object[] args) => WriteLine(format, LogLevel.Verbose, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] public virtual void Warning(string format, params object[] args) => WriteLine(format, LogLevel.Warning, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] public virtual void Error(string format, params object[] args) => WriteLine(format, LogLevel.Error, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] private void WriteLine(string format, LogLevel l, params object[] args) => Trace.WriteLine(Format(format, l, args));
+        [MethodImpl(MethodImplOptions.NoInlining)] protected string Format(string format, LogLevel l, params object[] args)
         {
             var frame = new StackFrame(3);
             var method = frame.GetMethod();
             var type = method.DeclaringType;
             var name = method.Name;
-            return $"{DateTime.Now.ToUniversalTime()} {l} {type} {name} {string.Format(format, args)}";
+            return $"{DateTime.Now.ToUniversalTime()} {l} {type}.{name} {string.Format(format, args)}";
         }
     }
 
@@ -62,56 +42,24 @@ namespace Bugfree.Spo.Cqrs.Core
     {
         readonly TextWriter _writer;
 
-        public TextWriterLogger(TextWriter tw)
-        {
-            _writer = tw;
-        }
+        public TextWriterLogger(TextWriter tw) => _writer = tw;
 
-        public override void Verbose(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Verbose, args);
-        }
-
-        public override void Warning(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Warning, args);
-        }
-
-        public override void Error(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Error, args);
-        }
-
-        private void WriteLine(string format, LogLevel l, params object[] args)
-        {
-            _writer.WriteLine(Format(format, l, args));
-        }
+        [MethodImpl(MethodImplOptions.NoInlining)] public override void Verbose(string format, params object[] args) => WriteLine(format, LogLevel.Verbose, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] public override void Warning(string format, params object[] args) => WriteLine(format, LogLevel.Warning, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] public override void Error(string format, params object[] args) => WriteLine(format, LogLevel.Error, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] private void WriteLine(string format, LogLevel l, params object[] args) => _writer.WriteLine(Format(format, l, args));
     }
 
     public class ColoredConsoleLogger : TraceLogger
     {
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public override void Verbose(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Verbose, Console.ForegroundColor, args);
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public override void Warning(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Warning, ConsoleColor.Yellow, args);
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public override void Error(string format, params object[] args)
-        {
-            WriteLine(format, LogLevel.Error, ConsoleColor.Red);
-        }
+        [MethodImpl(MethodImplOptions.NoInlining)] public override void Verbose(string format, params object[] args) => WriteLine(format, LogLevel.Verbose, ForegroundColor, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] public override void Warning(string format, params object[] args) => WriteLine(format, LogLevel.Warning, ConsoleColor.Yellow, args);
+        [MethodImpl(MethodImplOptions.NoInlining)] public override void Error(string format, params object[] args) => WriteLine(format, LogLevel.Error, ConsoleColor.Red);
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private void WriteLine(string s, LogLevel l, ConsoleColor foregroundColor, params object[] args)
         {
-            var original = Console.ForegroundColor;
+            var original = ForegroundColor;
             var logLine = Format(s, l, args);
 
             Trace.Listeners
@@ -127,20 +75,20 @@ namespace Bugfree.Spo.Cqrs.Core
             switch (l)
             {
                 case LogLevel.Verbose:
-                    Console.ForegroundColor = foregroundColor;
+                    ForegroundColor = foregroundColor;
                     break;
                 case LogLevel.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    ForegroundColor = ConsoleColor.Yellow;
                     break;
                 case LogLevel.Error:
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    ForegroundColor = ConsoleColor.Red;
                     break;
                 default:
                     throw new ArgumentException($"Unsupported log level: {l}");
             }
 
             Console.WriteLine(logLine);
-            Console.ForegroundColor = original;
+            ForegroundColor = original;
         }
     }
 }
